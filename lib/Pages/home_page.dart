@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:efficacy_admin/utils/bottom_sheet.dart';
 import 'package:efficacy_admin/utils/loading_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:efficacy_admin/Pages/account_screen.dart';
@@ -28,7 +29,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    late final SharedPreferences prefs;
+  late final SharedPreferences prefs;
   List data = [];
   bool isloading = false;
   late final UserModel user;
@@ -42,8 +43,8 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       isloading = true;
     });
-    prefs=await SharedPreferences.getInstance();
-    final userid=prefs.getString('Googleid');
+    prefs = await SharedPreferences.getInstance();
+    final userid = prefs.getString('Googleid');
     print(userid);
     await FirebaseFirestore.instance
         .collection('admin')
@@ -112,6 +113,23 @@ class _HomePageState extends State<HomePage> {
           ),
           body: isloading
               ? const LoadingScreen()
+              // GestureDetector(
+              //     onLongPress: () =>
+              //         showCustomBottomSheetWithDeleteAndEditButtons(
+              //             context: context,
+              //             onEditTap: () {
+              //               print('-------------------edit trigger');
+              //             },
+              //             onDeleteTap: () {
+              //               print('----deleting triggered');
+              //             }),
+              //     child: Container(
+              //       color: Colors.amber,
+              //       height: 20,
+              //       width: 30,
+              //     ),
+              //   )
+
               : TabBarView(
                   children: [
                     Upcoming(id: user.clubId!),
@@ -122,6 +140,8 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColorLight.primary,
             onPressed: () {
+              //for testing bottomsheet
+              // showSmallBottomSheet(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
