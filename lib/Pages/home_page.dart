@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:efficacy_admin/utils/bottom_sheet.dart';
+import 'package:efficacy_admin/utils/bottom_sheet_only_buttons.dart';
+import 'package:efficacy_admin/utils/bottom_sheet_with_data.dart';
 import 'package:efficacy_admin/utils/loading_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:efficacy_admin/Pages/account_screen.dart';
@@ -113,11 +114,17 @@ class _HomePageState extends State<HomePage> {
           ),
           body: isloading
               ? const LoadingScreen()
-              // GestureDetector(
+
+
+              ///-----------> for testing of bottom sheet  comment above line and uncomment below codesection after '?'
+
+              // ? GestureDetector(
               //     onLongPress: () =>
               //         showCustomBottomSheetWithDeleteAndEditButtons(
               //             context: context,
               //             onEditTap: () {
+              //               Navigator.pop(context);
+              //               showBottomSheetWithData(context);
               //               print('-------------------edit trigger');
               //             },
               //             onDeleteTap: () {
@@ -129,7 +136,6 @@ class _HomePageState extends State<HomePage> {
               //       width: 30,
               //     ),
               //   )
-
               : TabBarView(
                   children: [
                     Upcoming(id: user.clubId!),
@@ -140,8 +146,6 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColorLight.primary,
             onPressed: () {
-              //for testing bottomsheet
-              // showSmallBottomSheet(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(

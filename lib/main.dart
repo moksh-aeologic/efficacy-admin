@@ -75,7 +75,9 @@ class AuthenticationWrapper extends StatelessWidget {
     }
     if (googleUser != null) {
       return const SignupPage();
+      // return const HomePage();
     }
     return const Googlelogin();
+    // return const HomePage();
   }
 }

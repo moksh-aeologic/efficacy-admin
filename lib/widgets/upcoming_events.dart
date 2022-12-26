@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:efficacy_admin/Pages/edit_event.dart';
-import 'package:efficacy_admin/utils/bottom_sheet.dart';
+import 'package:efficacy_admin/utils/bottom_sheet_only_buttons.dart';
+import 'package:efficacy_admin/utils/bottom_sheet_with_data.dart';
 import 'package:efficacy_admin/utils/loading_screen.dart';
 import 'package:efficacy_admin/Pages/add_edit_screen.dart';
 import 'package:efficacy_admin/Pages/event_detail.dart';
@@ -78,6 +79,8 @@ class _UpcomingState extends State<Upcoming> {
                           showCustomBottomSheetWithDeleteAndEditButtons(
                               context: context,
                               onEditTap: () {
+                                Navigator.pop(context);
+                                showBottomSheetWithData(context);
                                 print('-------------------edit trigger');
                               },
                               onDeleteTap: () {

@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:efficacy_admin/utils/bottom_sheet.dart';
+import 'package:efficacy_admin/utils/bottom_sheet_only_buttons.dart';
+import 'package:efficacy_admin/utils/bottom_sheet_with_data.dart';
 import 'package:efficacy_admin/utils/loading_screen.dart';
 import 'package:efficacy_admin/Pages/add_edit_screen.dart';
 import 'package:efficacy_admin/Pages/event_detail.dart';
@@ -70,10 +71,12 @@ class _OngoingState extends State<Ongoing> {
                           },
                         ),
                       ),
-onLongPress: () =>
+                      onLongPress: () =>
                           showCustomBottomSheetWithDeleteAndEditButtons(
                               context: context,
                               onEditTap: () {
+                                Navigator.pop(context);
+                                showBottomSheetWithData(context);
                                 print('-------------------edit trigger');
                               },
                               onDeleteTap: () {
